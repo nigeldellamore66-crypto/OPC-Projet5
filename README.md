@@ -1,7 +1,7 @@
 	Script de migration Python d'un fichier healthcare_dataset.csv vers une base MongoDB
 
 
-	1. Fonctionnement
+1. Fonctionnement
 
 Le script charge le fichier CSV dans un DataFrame Pandas.
 
@@ -13,57 +13,61 @@ Les enregistrements sont insérés dans la collection patients de la base health
 
 Le script peut utiliser une variable d’environnement MONGO_URI si elle est définie, sinon il utilise une valeur par défaut.
 
-	2. Configuration
+2. Configuration
 
 Le script lit l’URI MongoDB ainsi :
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongo:27017/")
+	MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongo:27017/")
 
-	Option 1 : utiliser la valeur par défaut
+- Option 1 : utiliser la valeur par défaut
 
 Si Mongo tourne en conteneur mongo, aucune config n’est nécessaire.
 
-	Option 2 : définir la variable d'environnement
+- Option 2 : définir la variable d'environnement:
 	
-			Sous Linux / Mac :
-export MONGO_URI="mongodb://localhost:27017/healthcare"
+Sous Linux / Mac :
 
-			Sous Windows (PowerShell) :
-setx MONGO_URI "mongodb://localhost:27017/healthcare"
+	export MONGO_URI="mongodb://localhost:27017/healthcare"
 
-		Dans Docker Compose :
-services:
-  migration:
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/healthcare
+Sous Windows (PowerShell) :
 
-	3. Exécution
-python migrate.py
+	setx MONGO_URI "mongodb://localhost:27017/healthcare"
+
+Dans Docker Compose :
+
+	services:
+  	migration:
+    	environment:
+      	- MONGO_URI=mongodb://mongo:27017/healthcare
+
+3. Exécution
+
+		python migrate.py
 
 
-Résultat attendu :
+4. Résultat attendu :
 
 Connexion à MongoDB : OK
 Import de X patients terminé 
 
-	4.Vérification des données
+4.Vérification des données
 
-		Dans Mongo shell :
+Dans Mongo shell :
 
-use healthcare
-db.patients.countDocuments()
+	use healthcare
+	db.patients.countDocuments()
 
 
 Pour afficher quelques patients :
 
-db.patients.find().limit(5).pretty()
+	db.patients.find().limit(5).pretty()
 
-	5.Dépendances
+5.Dépendances
 	
-pandas:	  Lecture CSV
-
-pymongo:	Connexion et insertion dans MongoDB
+	pandas:	  Lecture CSV
+	pymongo:	Connexion et insertion dans MongoDB
 
 Installer les dépendances :
 
-pip install pandas pymongo
+	pip install pandas pymongo
+	
