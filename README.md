@@ -50,7 +50,7 @@ Dans Docker Compose :
 Connexion à MongoDB : OK
 Import de X patients terminé 
 
-4.Vérification des données
+5. Vérification des données
 
 Dans Mongo shell :
 
@@ -62,7 +62,7 @@ Pour afficher quelques patients :
 
 	db.patients.find().limit(5).pretty()
 
-5.Dépendances
+6. Dépendances
 	
 	pandas:	  Lecture CSV
 	pymongo:	Connexion et insertion dans MongoDB
