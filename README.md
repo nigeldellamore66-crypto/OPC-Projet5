@@ -1,4 +1,4 @@
-	Script de migration Python d'un fichier healthcare_dataset.csv vers une base MongoDB
+Script de migration Python d'un fichier healthcare_dataset.csv vers une base MongoDB
 
 
 1. Fonctionnement
