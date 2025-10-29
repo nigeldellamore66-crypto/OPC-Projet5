@@ -1,5 +1,6 @@
 	Script de migration Python d'un fichier healthcare_dataset.csv vers une base MongoDB
 
+
 	1. Fonctionnement
 
 Le script charge le fichier CSV dans un DataFrame Pandas.
@@ -60,6 +61,7 @@ db.patients.find().limit(5).pretty()
 	5.Dépendances
 	
 pandas:	  Lecture CSV
+
 pymongo:	Connexion et insertion dans MongoDB
 
 Installer les dépendances :
