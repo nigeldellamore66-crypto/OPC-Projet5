@@ -6,13 +6,15 @@ import os
 root_uri = "mongodb://admin:admin123@mongo:27017/admin"
 client = MongoClient(root_uri)
 db = client['healthcare']
+username = "healthcare_app"
+userpwd = "password123"
 
 # Création de l'utilisateur pour l'app
 try:
-    db.command("createUser", "healthcare_app",
-               pwd="password123",
+    db.command("createUser", username,
+               pwd=userpwd,
                roles=[{"role": "readWrite", "db": "healthcare"}])
-    print("Utilisateur healthcare_app créé ✅")
+    print("Utilisateur healthcare_app créé")
 except Exception as e:
     print("Erreur:", e)
     
