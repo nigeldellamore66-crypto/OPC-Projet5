@@ -53,23 +53,18 @@ Dans Docker Compose :
     	environment:
       	- MONGO_URI=mongodb://healthcare_app:password123@mongo:27017/healthcare?authSource=healthcare
 
-
 3. Exécution
+   
+	python migrate.py
 
 
-		python migrate.py
+5. Résultat attendu :
 
+	Utilisateur healthcare_app créé
 
-4. Résultat attendu :
-
-
-		Utilisateur healthcare_app créé
-
-		55500 enregistrements insérés dans healthcare.patients
-
+	55500 enregistrements insérés dans healthcare.patients
 
 6. Vérification des données
-
 
 Dans Mongo shell :
 
