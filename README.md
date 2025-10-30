@@ -18,16 +18,25 @@ Script de migration Python d'un fichier healthcare_dataset.csv vers une base Mon
 
 
 2. Configuration
-   
-Le script lit l’URI MongoDB ainsi :
+
+- Option 1 : utiliser les valeurs par défaut
+
+Par défaut la connexion est configurée avec l'utilisateur "healthcare_app", le mot de passe "password123", la base de donnée "healthcare", et la collection "patients".
+
+- Option 2 : modifier les variables de configuration et définir la variable d'environnement:
+
+Modifier le nom d'utilisateur et le mot de passe à créer dans MongoDB :
+
+	username = "healthcare_app"
+	userpwd = "password123"
+
+Modifier les paramètres de connexion à la base de donnée:
 
 	MONGO_URI = os.getenv("MONGO_URI", "mongodb://healthcare_app:password123@mongo:27017/healthcare?authSource=healthcare")
+	DB_NAME = os.getenv("MONGO_DB", "healthcare")
+	COLLECTION_NAME = os.getenv("MONGO_COLLECTION", "patients")
 
-- Option 1 : utiliser la valeur par défaut
-
-Si Mongo tourne en conteneur mongo, aucune config n’est nécessaire.
-
-- Option 2 : définir la variable d'environnement:
+La variable d'environnement peut également être définie en dehors du script :
 	
 Sous Linux / Mac :
 
