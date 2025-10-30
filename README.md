@@ -55,14 +55,14 @@ Dans Docker Compose :
 
 3. Exécution
    
-	python migrate.py
+		python migrate.py
 
 
-5. Résultat attendu :
+5. Résultat attendu
 
-	Utilisateur healthcare_app créé
+		Utilisateur healthcare_app créé
 
-	55500 enregistrements insérés dans healthcare.patients
+		55500 enregistrements insérés dans healthcare.patients
 
 6. Vérification des données
 
@@ -77,7 +77,7 @@ Dans Mongo shell :
 	db.patients.find().limit(5).pretty()
 
 
-6. Dépendances
+7. Dépendances
 
 	
 	pandas:	  Lecture CSV
