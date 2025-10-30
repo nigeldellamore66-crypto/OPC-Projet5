@@ -4,23 +4,24 @@ Script de migration Python d'un fichier healthcare_dataset.csv vers une base Mon
 1. Fonctionnement
    
 
-Le script charge le fichier CSV dans un DataFrame Pandas.
+- Le script commence par créer un utilisateur "healthcare_app" avec le mot de passe "password123" qui sera utilisé pour accéder à MongoDB.
 
-Les données sont nettoyées / normalisées (formatage du nom, arrondi du prix).
+- Le fichier CSV est chargé dans un DataFrame Pandas.
 
-Le DataFrame est converti en liste de dictionnaires (records).
+- Les données sont nettoyées / normalisées (formatage du nom, arrondi du prix).
 
-Les enregistrements sont insérés dans la collection patients de la base healthcare.
+- Le DataFrame est converti en liste de dictionnaires (records).
 
-Le script peut utiliser une variable d’environnement MONGO_URI si elle est définie, sinon il utilise une valeur par défaut.
+- Les enregistrements sont insérés dans la collection patients de la base healthcare.
+
+- Le script peut utiliser une variable d’environnement MONGO_URI si elle est définie, sinon il utilise une valeur par défaut.
 
 
 2. Configuration
    
-
 Le script lit l’URI MongoDB ainsi :
 
-	MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongo:27017/")
+	MONGO_URI = os.getenv("MONGO_URI", "mongodb://healthcare_app:password123@mongo:27017/healthcare?authSource=healthcare")
 
 - Option 1 : utiliser la valeur par défaut
 
@@ -30,18 +31,18 @@ Si Mongo tourne en conteneur mongo, aucune config n’est nécessaire.
 	
 Sous Linux / Mac :
 
-	export MONGO_URI="mongodb://localhost:27017/healthcare"
+	export MONGO_URI="mongodb://healthcare_app:password123@mongo:27017/healthcare?authSource=healthcare"
 
 Sous Windows (PowerShell) :
 
-	setx MONGO_URI "mongodb://localhost:27017/healthcare"
+	setx MONGO_URI "mongodb://healthcare_app:password123@mongo:27017/healthcare?authSource=healthcare"
 
 Dans Docker Compose :
 
 	services:
   	migration:
     	environment:
-      	- MONGO_URI=mongodb://mongo:27017/healthcare
+      	- MONGO_URI=mongodb://healthcare_app:password123@mongo:27017/healthcare?authSource=healthcare
 
 
 3. Exécution
@@ -63,6 +64,8 @@ Import de X patients terminé
 Dans Mongo shell :
 
 	use healthcare
+
+	db.auth("healthcare_app", "password123")
 	
 	db.patients.countDocuments()
 
