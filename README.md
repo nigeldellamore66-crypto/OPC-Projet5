@@ -76,6 +76,7 @@ Dans Mongo shell :
 
 	
 	pandas:	  Lecture CSV
+
 	pymongo:	Connexion et insertion dans MongoDB
 
 Installer les dépendances :
