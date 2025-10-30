@@ -2,8 +2,22 @@ import pandas as pd
 from pymongo import MongoClient
 import os
 
+# Connexion à la base healthcare en root
+root_uri = "mongodb://admin:admin123@mongo:27017/admin"
+client = MongoClient(root_uri)
+db = client['healthcare']
+
+# Création de l'utilisateur pour l'app
+try:
+    db.command("createUser", "healthcare_app",
+               pwd="password123",
+               roles=[{"role": "readWrite", "db": "healthcare"}])
+    print("Utilisateur healthcare_app créé ✅")
+except Exception as e:
+    print("Erreur:", e)
+    
 # Connexion à MongoDB (hostname vient de docker-compose)
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongo:27017/")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://healthcare_app:password123@mongo:27017/healthcare?authSource=healthcare")
 DB_NAME = os.getenv("MONGO_DB", "healthcare")
 COLLECTION_NAME = os.getenv("MONGO_COLLECTION", "patients")
 
