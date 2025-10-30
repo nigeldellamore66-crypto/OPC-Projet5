@@ -54,11 +54,12 @@ Dans Docker Compose :
 4. Résultat attendu :
 
 
-Connexion à MongoDB : OK
-Import de X patients terminé 
+		Utilisateur healthcare_app créé
+
+		55500 enregistrements insérés dans healthcare.patients
 
 
-5. Vérification des données
+6. Vérification des données
 
 
 Dans Mongo shell :
